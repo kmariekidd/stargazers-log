@@ -1,0 +1,20 @@
+[
+  {
+    "repository": "octocat/Hello-World",
+    "url": "https://github.com/octocat/Hello-World",
+    "description": "My first repository on GitHub!",
+    "starredAt": "2024-01-15"
+  },
+  {
+    "repository": "octocat/Spoon-Knife",
+    "url": "https://github.com/octocat/Spoon-Knife",
+    "description": "A test repository for practicing GitHub workflows.",
+    "starredAt": "2024-03-08"
+  },
+  {
+    "repository": "microsoft/vscode",
+    "url": "https://github.com/microsoft/vscode",
+    "description": "Visual Studio Code.",
+    "starredAt": "2024-06-21"
+  }
+]
