@@ -31,8 +31,16 @@ function isRepositoryEntry(value) {
 }
 
 async function loadRepositories() {
+  const controller = new AbortController();
+  let timedOut = false;
+  const timeoutId = setTimeout(() => {
+    timedOut = true;
+    controller.abort();
+    statusMessage.textContent = "Loading repositories timed out. Please try again.";
+  }, 10000);
+
   try {
-    const response = await fetch("events.json");
+    const response = await fetch("events.json", { signal: controller.signal });
     if (!response.ok) {
       throw new Error(`Request failed with status ${response.status}`);
     }
@@ -70,7 +78,11 @@ async function loadRepositories() {
       : "No starred repositories yet.";
   } catch (error) {
     console.error("Could not load starred repositories:", error);
-    statusMessage.textContent = "Could not load starred repositories.";
+    if (!timedOut) {
+      statusMessage.textContent = "Could not load starred repositories.";
+    }
+  } finally {
+    clearTimeout(timeoutId);
   }
 }
 
